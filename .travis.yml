@@ -1,0 +1,4 @@
+language: csharp
+solution: GPA.sln
+mono:
+ - latest
