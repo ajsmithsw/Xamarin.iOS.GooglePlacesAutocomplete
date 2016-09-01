@@ -8,6 +8,10 @@ Solution is currently incomplete. If you wish to contribute, you're very welcome
 ### Obtaining API key:
 Use the [Google Developers Console](https://console.developers.google.com/) to enable the 'Google Places API Web Service' and create a 'Server' API key credential. In both cases do not use the iOS options.
 
+## How to implement PlacesViewController
+
+>The PlacesViewController returns a JSON.NET jObject - ensure that you install *Newtonsoft.Json* in your iOS project. 
+
 ### Using the PlacesViewController programmatically
 If you are creating your iOS app without using storyboards, or wish to launch the view programmatically:
 
