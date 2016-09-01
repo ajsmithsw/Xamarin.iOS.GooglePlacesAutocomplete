@@ -32,7 +32,7 @@ namespace GPACodeExample
 			{
 				// 1. Instantiate the PlacesViewController
 				placesViewController = new PlacesViewController();
-				placesViewController.apiKey = Constants.apiKey; // "<Your API key here>";
+				placesViewController.apiKey = "<Your API key here>";
 				// TODO - set PlaceType
 
 				// 2. Subscribe to PlaceSelected delegate to get place details
