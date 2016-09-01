@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 using CoreGraphics;
 using Newtonsoft.Json;
 
-namespace CycleWeather.iOS
+namespace GPA
 {
 	// Event handler for sending LocationObject to parent view controller
 	public delegate void PlaceSelected(object sender, JObject locationData);

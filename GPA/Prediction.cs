@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace CycleWeather.iOS
+namespace GPA
 {
 
 	public class Prediction

@@ -9,10 +9,10 @@ using System;
 using System.CodeDom.Compiler;
 using UIKit;
 
-namespace CycleWeather.iOS
+namespace GPA
 {
     [Register ("PlacesViewController")]
-    partial class PlacesViewController
+    public partial class PlacesViewController
     {
         void ReleaseDesignerOutlets ()
         {

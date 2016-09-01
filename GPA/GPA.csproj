@@ -49,6 +49,7 @@
     <Compile Include="PlacesViewController.designer.cs" />
     <Compile Include="LocationPredictions.cs" />
     <Compile Include="Prediction.cs" />
+    <Compile Include="Constants.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
