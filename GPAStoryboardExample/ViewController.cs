@@ -15,6 +15,9 @@ namespace GPAStoryboardExample
 		{
 			base.ViewDidLoad();
 			// Perform any additional setup after loading the view, typically from a nib.
+			MyButton.TouchUpInside += (sender, e) => { 
+				PerformSegue("MyCustomSegue", this);
+			};
 		}
 
 		public override void DidReceiveMemoryWarning()

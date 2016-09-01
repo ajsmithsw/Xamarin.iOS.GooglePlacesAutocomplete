@@ -12,7 +12,7 @@ using UIKit;
 namespace GPA
 {
     [Register ("PlacesViewController")]
-    public partial class PlacesViewController
+    partial class PlacesViewController
     {
         void ReleaseDesignerOutlets ()
         {
