@@ -51,7 +51,7 @@ namespace GPA
 			EdgesForExtendedLayout = UIRectEdge.None;
 
 			var backgroundView = new UIView(View.Frame);
-			backgroundView.BackgroundColor = UIColor.White;
+			backgroundView.BackgroundColor = UIColor.Yellow;
 			View.AddSubview(backgroundView);
 
 			searchBar = new UISearchBar();
