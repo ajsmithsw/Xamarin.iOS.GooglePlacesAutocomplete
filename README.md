@@ -4,17 +4,21 @@ A simple Google Places API autocompleting search view controller for native Xama
 
  <td align="center"><img src="https://1.bp.blogspot.com/-boNRr4Kj-Jw/V8luLjb11-I/AAAAAAAAEvI/Bc9xI4JUkl0FzJMciMLPOKQGKVfhUAS4wCLcB/s320/GPA_example.png"/></td>
 
+
 ### Contributing
 Solution is currently incomplete. If you wish to contribute, you're very welcome to submit pull requests or get in touch.
+
 
 ### Obtaining API key
 Use the [Google Developers Console](https://console.developers.google.com/) to enable the 'Google Places API Web Service' and create a 'Server' API key credential. In both cases do not use the iOS options.
 
+
 ## How to implement PlacesViewController
 
->The PlacesViewController returns a JSON.NET jObject - ensure that you install *Newtonsoft.Json* in your iOS project. 
+> Ensure that you install **Newtonsoft.Json** in your iOS project. 
 
 ### Using the PlacesViewController programmatically
+
 If you are creating your iOS app without using storyboards, or wish to launch the view programmatically:
 
 ```csharp
@@ -41,3 +45,10 @@ void HandlePlaceSelection(object sender, JObject placeData)
     Console.WriteLine($"{placeData}");
 }
 ```
+
+
+### Using the PlacesViewController with Storyboards (iOS Designer)
+
+To implement using the iOS designer for Xamarin or XCode Storyboard Editor:
+
+1. // TODO!
