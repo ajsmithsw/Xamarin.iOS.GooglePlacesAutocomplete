@@ -69,7 +69,7 @@ namespace GPACodeExample
 			// 5. Handle the place details however you wish
 			Console.WriteLine($"{placeData}");
 
-			// TODO - Create helper class 'Location'
+			// TODO - Create helper class 'Place'
 		}
 
 	}

@@ -13,9 +13,12 @@ Solution is currently incomplete. If you wish to contribute, you're very welcome
 Use the [Google Developers Console](https://console.developers.google.com/) to enable the 'Google Places API Web Service' and create a 'Server' API key credential. In both cases do not use the iOS options.
 
 
+
 ## How to implement PlacesViewController
 
+
 > Ensure that you install **Newtonsoft.Json** in your iOS project. 
+
 
 ### Using the PlacesViewController programmatically
 
@@ -73,17 +76,17 @@ public override void PrepareForSegue(UIStoryboardSegue segue, Foundation.NSObjec
     {
 	    base.PrepareForSegue(segue, sender);
 
-		 if (segue.Identifier.Equals("MyCustomSegue"))
+		if (segue.Identifier.Equals("MyCustomSegue"))
 		{ 
 			var vc = (PlacesViewController)segue.DestinationViewController.ChildViewControllers[0];
-			vc.apiKey = "<Your API Key Here>";
+			vc.apiKey = "<Your API key here>";
 			// TODO - Set Placetype and other parameters
 			vc.PlaceSelected += HandlePlaceSelection;
-			}
+		}
 	}
 ```
 
-7. Finally, create the `HandlePlaceSelection()`, which will be called when a place is selected:
+7. Finally, create the `HandlePlaceSelection()`, which will be called whenever a place is selected:
 ```csharp
 void HandlePlaceSelection(object sender, JObject placeDetails)
 {

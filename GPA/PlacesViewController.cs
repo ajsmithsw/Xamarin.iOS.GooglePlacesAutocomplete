@@ -35,8 +35,8 @@ namespace GPA
 		UITableView resultsTable;
 		UITableViewSource tableSource;
 
+		public UIView backgroundView;
 		public string apiKey { get; set; }
-
 
 		public event PlaceSelected PlaceSelected;
 
@@ -50,8 +50,8 @@ namespace GPA
 			base.ViewDidLoad();
 			EdgesForExtendedLayout = UIRectEdge.None;
 
-			var backgroundView = new UIView(View.Frame);
-			backgroundView.BackgroundColor = UIColor.Yellow;
+			backgroundView = new UIView(View.Frame);
+			backgroundView.BackgroundColor = UIColor.White;
 			View.AddSubview(backgroundView);
 
 			searchBar = new UISearchBar();
@@ -182,7 +182,6 @@ namespace GPA
 			var placeType = "(cities)";
 			return $"{url}?input={input}&types={placeType}&key={apiKey}";
 		}
-
 
 	}
 
