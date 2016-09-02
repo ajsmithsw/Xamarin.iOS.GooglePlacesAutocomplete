@@ -56,4 +56,13 @@ To implement using the iOS designer for Xamarin or XCode Storyboard Editor:
 2. Select the new child view controller and in Identity>Class dropdown, select PlacesViewController:
 ![classes dropdown](HowTo/STORYBOARD_class_identity.png)
 
-3. 
+3. Add a new 'Push Modal' segue from the view controller you wish to launch the Places view controller from, to the new Navigation controller.
+
+4. In the properties window, give the segue a custom Name
+
+5. back in your view controller, add this action to a control such as a UIButton:
+```csharp
+MyButton.TouchUpInside += (sender, e) => // For example
+{ 
+    PerformSegue("MyCustomSegue", this);
+};```
