@@ -65,4 +65,29 @@ To implement using the iOS designer for Xamarin or XCode Storyboard Editor:
 MyButton.TouchUpInside += (sender, e) => // For example
 { 
     PerformSegue("MyCustomSegue", this);
-};```
+};
+```
+6. Override the `PrepareForSegue` method as follows:
+```csharp
+public override void PrepareForSegue(UIStoryboardSegue segue, Foundation.NSObject sender)
+    {
+	    base.PrepareForSegue(segue, sender);
+
+		 if (segue.Identifier.Equals("MyCustomSegue"))
+		{ 
+			var vc = (PlacesViewController)segue.DestinationViewController.ChildViewControllers[0];
+			vc.apiKey = "<Your API Key Here>";
+			// TODO - Set Placetype and other parameters
+			vc.PlaceSelected += HandlePlaceSelection;
+			}
+	}
+```
+
+7. Finally, create the `HandlePlaceSelection()`, which will be called when a place is selected:
+```csharp
+void HandlePlaceSelection(object sender, JObject placeDetails)
+{
+	// Handle as you wish
+	Console.WriteLine($"{placeDetails}");
+}
+```
