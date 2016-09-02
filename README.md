@@ -2,6 +2,8 @@
 
 A simple Google Places API autocompleting search view controller for native Xamarin iOS apps. Inspired by the [brilliant Swift example](https://github.com/watsonbox/ios_google_places_autocomplete) created by [Howard Wilson](http://watsonbox.github.com/).
 
+ <td align="center"><img src="https://1.bp.blogspot.com/-boNRr4Kj-Jw/V8luLjb11-I/AAAAAAAAEvI/Bc9xI4JUkl0FzJMciMLPOKQGKVfhUAS4wCLcB/s320/GPA_example.png"/></td>
+
 ### Contributing
 Solution is currently incomplete. If you wish to contribute, you're very welcome to submit pull requests or get in touch.
 

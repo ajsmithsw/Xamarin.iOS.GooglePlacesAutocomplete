@@ -30,7 +30,7 @@ namespace GPAStoryboardExample
 			if (segue.Identifier.Equals("MyCustomSegue"))
 			{ 
 				var vc = (PlacesViewController)segue.DestinationViewController.ChildViewControllers[0];
-				vc.apiKey = "<Your API Key here>";
+				vc.apiKey = "<Your API Key Here>"; // Constants.apiKey;
 				// TODO - Set Placetype and other parameters
 				vc.PlaceSelected += HandlePlaceSelection;
 			}
