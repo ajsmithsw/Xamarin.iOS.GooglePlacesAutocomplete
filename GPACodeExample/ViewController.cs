@@ -41,6 +41,13 @@ namespace GPACodeExample
 				// 3. Instantiate the UINavigationController to contain the PlacesViewController
 				placesViewContainer = new UINavigationController(placesViewController);
 
+				// Optional: Customize the view styling
+				//placesViewController.NavigationController.NavigationBar.BarStyle = UIBarStyle.Default;
+				//placesViewController.NavigationController.NavigationBar.Translucent = false;
+				//placesViewController.NavigationController.NavigationBar.TintColor = UIColor.Magenta;
+				//placesViewController.NavigationController.NavigationBar.BarTintColor = UIColor.Yellow;
+				//placesViewController.Title = "Type Address";
+
 				// 4. Present the view
 				PresentViewController(placesViewContainer, true, null);
 			};

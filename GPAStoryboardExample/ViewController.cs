@@ -31,6 +31,14 @@ namespace GPAStoryboardExample
 			{
 				var vc = (PlacesViewController)segue.DestinationViewController.ChildViewControllers[0];
 				vc.apiKey = "<Your API key here>";
+
+				// Optional: Customize the view styling
+				//vc.NavigationController.NavigationBar.BarStyle = UIBarStyle.Default;
+				//vc.NavigationController.NavigationBar.Translucent = false;
+				//vc.NavigationController.NavigationBar.TintColor = UIColor.Magenta;
+				//vc.NavigationController.NavigationBar.BarTintColor = UIColor.Yellow;
+				//vc.Title = "Type Address";
+
 				vc.PlaceSelected += HandlePlaceSelection;
 			}
 		}

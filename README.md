@@ -50,6 +50,7 @@ void HandlePlaceSelection(object sender, JObject placeData)
 ```
 
 
+
 ### Using the PlacesViewController with Storyboards (iOS Designer)
 
 To implement using the iOS designer for Xamarin or XCode Storyboard Editor:
@@ -92,5 +93,43 @@ void HandlePlaceSelection(object sender, JObject placeDetails)
 {
 	// Handle as you wish
 	Console.WriteLine($"{placeDetails}");
+}
+```
+
+
+### Styling
+
+You can style the Places view controller to match your app's UI:
+```csharp
+// If using programmatically, style the view after placing in container UINavigationController:
+
+placesViewContainer = new UINavigationController(placesViewController);
+
+placesViewController.NavigationController.NavigationBar.BarStyle = UIBarStyle.Default;
+placesViewController.NavigationController.NavigationBar.Translucent = false;
+placesViewController.NavigationController.NavigationBar.TintColor = UIColor.Magenta;
+placesViewController.NavigationController.NavigationBar.BarTintColor = UIColor.Yellow;
+placesViewController.Title = "Type Address";
+```
+```csharp
+// If using with storyboards, style the view in the PrepareForSegue override:
+
+public override void PrepareForSegue(UIStoryboardSegue segue, Foundation.NSObject sender)
+{
+    base.PrepareForSegue(segue, sender);
+
+    if (segue.Identifier.Equals("MyCustomSegue"))
+    {
+        var vc = (PlacesViewController)segue.DestinationViewController.ChildViewControllers[0];
+        vc.apiKey = "<Your API key here>";
+
+        vc.NavigationController.NavigationBar.BarStyle = UIBarStyle.Default;
+        vc.NavigationController.NavigationBar.Translucent = false;
+        vc.NavigationController.NavigationBar.TintColor = UIColor.Magenta;
+        vc.NavigationController.NavigationBar.BarTintColor = UIColor.Yellow;
+        vc.Title = "Type Address";
+
+        vc.PlaceSelected += HandlePlaceSelection;
+    }
 }
 ```
