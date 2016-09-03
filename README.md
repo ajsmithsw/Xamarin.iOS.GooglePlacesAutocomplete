@@ -160,12 +160,12 @@ if (segue.Identifier.Equals("MyCustomSegue"))
 
 ### Place Object
 
-You can utilize the GooglePlace object by importing 'DurianCode.iOS.Places.GooglePlace'. For example:
+You can utilize the Place object by using 'DurianCode.iOS.Places.GooglePlace'. For example:
 
 ```csharp
 void HandlePlaceSelection(object sender, JObject placeData)
 { 
-    var place = new GooglePlace(placeData);
+    var place = new Place(placeData);
     Console.WriteLine($"Place: {place.name}, Coordinates: {place.lat},{place.lon}");
     Console.WriteLine(place.raw); // prints the full place details json result
 }

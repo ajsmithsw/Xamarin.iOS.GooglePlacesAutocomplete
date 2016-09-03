@@ -73,8 +73,8 @@ namespace GPACodeExample
 			// 6. Handle the place details however you wish
 			Console.WriteLine($"{placeData}");
 
-			// You can utilize the GooglePlace object by importing 'DurianCode.iOS.Places.GooglePlace'
-			var place = new GooglePlace(placeData);
+			// You can utilize the Place object by importing 'DurianCode.iOS.Places.GooglePlace'
+			var place = new Place(placeData);
 		}
 
 	}
