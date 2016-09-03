@@ -6,7 +6,6 @@ using System.Net;
 using System.Threading.Tasks;
 using System.IO;
 using Newtonsoft.Json.Linq;
-using CoreGraphics;
 using Newtonsoft.Json;
 
 namespace GPA
@@ -15,9 +14,27 @@ namespace GPA
 
 	public enum PlaceType
 	{
-		// TODO - Set this up like the swift wrapper... make this a static class instead?
+		All, Geocode, Address, Establishment, Regions, Cities
 	}
 
+	public class LocationBias
+	{
+		public readonly double latitude;
+		public readonly double longitude;
+		public readonly int radius;
+
+		public LocationBias(double latitude, double longitude, int radius) 
+		{
+			this.latitude = latitude;
+			this.longitude = longitude;
+			this.radius = radius;
+		}
+
+		public override string ToString()
+		{
+			return $"&location={latitude},{longitude}&radius={radius}";
+		}
+	}
 
 	public class LocationObject
 	{
@@ -29,19 +46,22 @@ namespace GPA
 
 	public partial class PlacesViewController : UIViewController
 	{
+		public PlacesViewController(IntPtr handle) : base(handle) { }
+
+		public PlacesViewController() { }
+
+
+		public UIView backgroundView;
 		UISearchBar searchBar;
 		// TODO - UIImageView googleAttribution;
 		UITableView resultsTable;
 		UITableViewSource tableSource;
-
-		public UIView backgroundView;
 		public string apiKey { get; set; }
+		LocationBias locationBias;
+		string CustomPlaceType;
+
 
 		public event PlaceSelected PlaceSelected;
-
-		public PlacesViewController(IntPtr handle) : base(handle) { }
-
-		public PlacesViewController() { }
 
 
 		public override void ViewDidLoad()
@@ -64,10 +84,10 @@ namespace GPA
 
 			resultsTable = new UITableView();
 			tableSource = new ResultsTableSource();
+			resultsTable.TranslatesAutoresizingMaskIntoConstraints = false;
 			resultsTable.Source = tableSource;
 			((ResultsTableSource)resultsTable.Source).apiKey = apiKey;
 			((ResultsTableSource)resultsTable.Source).RowItemSelected += OnPlaceSelection;
-			resultsTable.TranslatesAutoresizingMaskIntoConstraints = false;
 			View.AddSubview(resultsTable);
 			AddResultsTableConstraints();
 
@@ -95,7 +115,6 @@ namespace GPA
 			UpdateViewConstraints();
 		}
 
-
 		void AddResultsTableConstraints()
 		{
 			var rtLeft = resultsTable.LeftAnchor.ConstraintEqualTo(View.LeftAnchor);
@@ -107,6 +126,36 @@ namespace GPA
 			rtLeft, rtRight, rtTop, rtBottom
 			});
 			UpdateViewConstraints();
+		}
+
+		public void SetLocationBias(LocationBias locationBias)
+		{
+			this.locationBias = locationBias;
+		}
+
+		public void SetPlaceType(PlaceType placeType)
+		{
+			switch (placeType)
+			{
+				case PlaceType.All:
+					CustomPlaceType = "";
+					break;
+				case PlaceType.Geocode:
+					CustomPlaceType = "geocode";
+					break;
+				case PlaceType.Address:
+					CustomPlaceType = "address";
+					break;
+				case PlaceType.Establishment:
+					CustomPlaceType = "establishment";
+					break;
+				case PlaceType.Regions:
+					CustomPlaceType = "(regions)";
+					break;
+				case PlaceType.Cities:
+					CustomPlaceType = "(cities)";
+					break;
+			}
 		}
 
 		async void SearchInputChanged(object sender, UISearchBarTextChangedEventArgs e)
@@ -178,8 +227,19 @@ namespace GPA
 		{
 			var url = "https://maps.googleapis.com/maps/api/place/autocomplete/json";
 			var input = Uri.EscapeUriString(searchText);
-			var placeType = "(cities)";
-			return $"{url}?input={input}&types={placeType}&key={apiKey}";
+
+			var pType = "";
+			if (CustomPlaceType != null)
+				pType = CustomPlaceType;
+
+			var constructedUrl = $"{url}?input={input}&types={pType}&key={apiKey}";
+
+			// TODO - add location biasing if it has been set
+			if (this.locationBias != null)
+				constructedUrl = constructedUrl + locationBias;
+
+			Console.WriteLine(constructedUrl);
+			return constructedUrl;
 		}
 
 	}
@@ -188,7 +248,7 @@ namespace GPA
 	public class ResultsTableSource : UITableViewSource
 	{
 		public LocationPredictions predictions { get; set; }
-		string cellIdentifier = "TableCell";
+		const string cellIdentifier = "TableCell";
 		public event PlaceSelected RowItemSelected;
 		public string apiKey { get; set; }
 
@@ -212,9 +272,8 @@ namespace GPA
 
 		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
 		{
-			// request a recycled cell to save memory
 			UITableViewCell cell = tableView.DequeueReusableCell(cellIdentifier);
-			// if there are no cells to reuse, create a new one
+
 			if (cell == null)
 				cell = new UITableViewCell(UITableViewCellStyle.Default, cellIdentifier);
 
@@ -250,7 +309,7 @@ namespace GPA
 			}
 			catch (Exception e)
 			{
-				Debug.WriteLine($"uh oh... {e}");
+				Console.WriteLine(e);
 			}
 		}
 

@@ -1,9 +1,6 @@
 ﻿using System;
-
-using UIKit;
 using GPA;
-using Newtonsoft.Json;
-using System.Runtime.Remoting.Channels;
+using UIKit;
 using Newtonsoft.Json.Linq;
 
 namespace GPACodeExample
@@ -13,10 +10,6 @@ namespace GPACodeExample
 		public UIButton getLocationButton;
 		public UINavigationController placesViewContainer;
 		public PlacesViewController placesViewController;
-
-		public ViewController()
-		{
-		}
 
 		public override void ViewDidLoad()
 		{
@@ -32,13 +25,25 @@ namespace GPACodeExample
 			{
 				// 1. Instantiate the PlacesViewController
 				placesViewController = new PlacesViewController();
-				placesViewController.apiKey = "<Your API key here>";
-				// TODO - set PlaceType
+				placesViewController.apiKey = Constants.apiKey; //"<Your API key here>";
 
-				// 2. Subscribe to PlaceSelected delegate to get place details
+				// 2. Set the search criteria to match your needs
+
+				//  Note: If you do not supply the location and radius, 
+				//	the API will attempt to detect the user's location 
+				//	from their IP address, and will bias the results to 
+				//	that location. If you would prefer to have no 
+				//  location bias, set the location to '0,0' and radius 
+				//  to '20000000' (20 thousand kilometers), to encompass 
+				//  the entire world.
+				
+				//placesViewController.SetPlaceType(PlaceType.Cities);
+				//placesViewController.SetLocationBias(new LocationBias(40.7058316, -74.2581935, 1000000));
+
+				// 3. Subscribe to PlaceSelected delegate to get place details
 				placesViewController.PlaceSelected += HandlePlaceSelection;
 
-				// 3. Instantiate the UINavigationController to contain the PlacesViewController
+				// 4. Instantiate the UINavigationController to contain the PlacesViewController
 				placesViewContainer = new UINavigationController(placesViewController);
 
 				// Optional: Customize the view styling
@@ -48,7 +53,7 @@ namespace GPACodeExample
 				//placesViewController.NavigationController.NavigationBar.BarTintColor = UIColor.Yellow;
 				//placesViewController.Title = "Type Address";
 
-				// 4. Present the view
+				// 5. Present the view
 				PresentViewController(placesViewContainer, true, null);
 			};
 
@@ -73,7 +78,7 @@ namespace GPACodeExample
 
 		void HandlePlaceSelection(object sender, JObject placeData)
 		{ 
-			// 5. Handle the place details however you wish
+			// 6. Handle the place details however you wish
 			Console.WriteLine($"{placeData}");
 
 			// TODO - Create helper class 'Place'
