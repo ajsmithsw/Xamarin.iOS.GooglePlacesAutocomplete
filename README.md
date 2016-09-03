@@ -28,15 +28,18 @@ If you are creating your iOS app without using storyboards, or wish to launch th
 // 1. Instantiate the PlacesViewController
 placesViewController = new PlacesViewController();
 placesViewController.apiKey = "<Your API key here>";
-// TODO - set PlaceType
 
-// 2. Subscribe to PlaceSelected delegate to get place details
+// 2. (OPTIONAL) Set the search criteria to match your needs
+placesViewController.SetPlaceType(PlaceType.Cities);
+placesViewController.SetLocationBias(new LocationBias(40.7058316, -74.2581935, 1000000));
+
+// 3. Subscribe to PlaceSelected delegate to get place details
 placesViewController.PlaceSelected += HandlePlaceSelection;
 
-// 3. Instantiate the UINavigationController to contain the PlacesViewController
+// 4. Instantiate the UINavigationController to contain the PlacesViewController
 placesViewContainer = new UINavigationController(placesViewController);
 
-// 4. Present the view
+// 5. Present the view
 PresentViewController(placesViewContainer, true, null);
 ```
 Your HandlePlaceSelection delegate method:
@@ -44,7 +47,7 @@ Your HandlePlaceSelection delegate method:
 ```csharp
 void HandlePlaceSelection(object sender, JObject placeData)
 { 
-    // 5. Handle the place details however you wish
+    // 6. Handle the place details however you wish
     Console.WriteLine($"{placeData}");
 }
 ```
@@ -74,25 +77,29 @@ MyButton.TouchUpInside += (sender, e) => // For example
 6. Override the `PrepareForSegue` method as follows:
 ```csharp
 public override void PrepareForSegue(UIStoryboardSegue segue, Foundation.NSObject sender)
-    {
-	    base.PrepareForSegue(segue, sender);
+{
+    base.PrepareForSegue(segue, sender);
 
-		if (segue.Identifier.Equals("MyCustomSegue"))
-		{ 
-			var vc = (PlacesViewController)segue.DestinationViewController.ChildViewControllers[0];
-			vc.apiKey = "<Your API key here>";
-			// TODO - Set Placetype and other parameters
-			vc.PlaceSelected += HandlePlaceSelection;
-		}
-	}
+    if (segue.Identifier.Equals("MyCustomSegue"))
+    { 
+        var vc = (PlacesViewController)segue.DestinationViewController.ChildViewControllers[0];
+        vc.apiKey = "<Your API key here>";
+
+        // (OPTIONAL) Customize the search parameters
+        vc.SetPlaceType(PlaceType.Address);
+        vc.SetLocationBias(new LocationBias(40.7058316, -74.2581935, 1000000));
+
+        vc.PlaceSelected += HandlePlaceSelection;
+    }
+}
 ```
 
 7. Finally, create the `HandlePlaceSelection()`, which will be called whenever a place is selected:
 ```csharp
 void HandlePlaceSelection(object sender, JObject placeDetails)
 {
-	// Handle as you wish
-	Console.WriteLine($"{placeDetails}");
+    // Handle as you wish
+    Console.WriteLine($"{placeDetails}");
 }
 ```
 
@@ -114,22 +121,16 @@ placesViewController.Title = "Type Address";
 ```csharp
 // If using with storyboards, style the view in the PrepareForSegue override:
 
-public override void PrepareForSegue(UIStoryboardSegue segue, Foundation.NSObject sender)
+if (segue.Identifier.Equals("MyCustomSegue"))
 {
-    base.PrepareForSegue(segue, sender);
+    ...
 
-    if (segue.Identifier.Equals("MyCustomSegue"))
-    {
-        var vc = (PlacesViewController)segue.DestinationViewController.ChildViewControllers[0];
-        vc.apiKey = "<Your API key here>";
-
-        vc.NavigationController.NavigationBar.BarStyle = UIBarStyle.Default;
-        vc.NavigationController.NavigationBar.Translucent = false;
-        vc.NavigationController.NavigationBar.TintColor = UIColor.Magenta;
-        vc.NavigationController.NavigationBar.BarTintColor = UIColor.Yellow;
-        vc.Title = "Type Address";
-
-        vc.PlaceSelected += HandlePlaceSelection;
-    }
+    vc.NavigationController.NavigationBar.BarStyle = UIBarStyle.Default;
+    vc.NavigationController.NavigationBar.Translucent = false;
+    vc.NavigationController.NavigationBar.TintColor = UIColor.Magenta;
+    vc.NavigationController.NavigationBar.BarTintColor = UIColor.Yellow;
+    vc.Title = "Type Address";
+    
+    ...
 }
 ```

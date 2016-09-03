@@ -9,7 +9,7 @@ using System;
 using System.CodeDom.Compiler;
 using UIKit;
 
-namespace GPA
+namespace DurianCode.iOS.Places
 {
     [Register ("PlacesViewController")]
     partial class PlacesViewController

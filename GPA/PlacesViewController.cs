@@ -8,7 +8,7 @@ using System.IO;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 
-namespace GPA
+namespace DurianCode.iOS.Places
 {
 	public delegate void PlaceSelected(object sender, JObject locationData);
 
@@ -234,7 +234,6 @@ namespace GPA
 
 			var constructedUrl = $"{url}?input={input}&types={pType}&key={apiKey}";
 
-			// TODO - add location biasing if it has been set
 			if (this.locationBias != null)
 				constructedUrl = constructedUrl + locationBias;
 

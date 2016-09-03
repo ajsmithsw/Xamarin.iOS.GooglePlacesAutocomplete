@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GPA", "GPA\GPA.csproj", "{CA139AEC-5F18-4A5D-8DCF-FCC2ED4D364A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DurianCode.iOS.Places", "GPA\DurianCode.iOS.Places.csproj", "{CA139AEC-5F18-4A5D-8DCF-FCC2ED4D364A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GPACodeExample", "GPACodeExample\GPACodeExample.csproj", "{A675E1F8-0D41-492C-A0C9-1DAF2DD34ACA}"
 EndProject

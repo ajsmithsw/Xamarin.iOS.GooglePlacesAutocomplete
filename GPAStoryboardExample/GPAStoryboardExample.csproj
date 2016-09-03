@@ -125,9 +125,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GPA\GPA.csproj">
+    <ProjectReference Include="..\GPA\DurianCode.iOS.Places.csproj">
       <Project>{CA139AEC-5F18-4A5D-8DCF-FCC2ED4D364A}</Project>
-      <Name>GPA</Name>
+      <Name>DurianCode.iOS.Places</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

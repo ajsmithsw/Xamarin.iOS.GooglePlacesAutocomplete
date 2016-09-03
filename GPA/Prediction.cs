@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace GPA
+namespace DurianCode.iOS.Places
 {
 
 	public class Prediction

@@ -6,7 +6,7 @@
     <ProjectGuid>{CA139AEC-5F18-4A5D-8DCF-FCC2ED4D364A}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>GPA</RootNamespace>
+    <RootNamespace>DurianCode.iOS.Places</RootNamespace>
     <AssemblyName>GPA</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <SynchReleaseVersion>false</SynchReleaseVersion>

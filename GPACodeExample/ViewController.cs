@@ -1,5 +1,5 @@
 ﻿using System;
-using GPA;
+using DurianCode.iOS.Places;
 using UIKit;
 using Newtonsoft.Json.Linq;
 

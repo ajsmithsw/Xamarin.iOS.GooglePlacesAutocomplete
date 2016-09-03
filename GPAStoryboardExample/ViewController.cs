@@ -1,5 +1,5 @@
 ﻿using System;
-using GPA;
+using DurianCode.iOS.Places;
 using UIKit;
 using Newtonsoft.Json.Linq;
 
@@ -31,7 +31,10 @@ namespace GPAStoryboardExample
 			{
 				var vc = (PlacesViewController)segue.DestinationViewController.ChildViewControllers[0];
 				vc.apiKey = "<Your API key here>";
-				// TODO - Set Placetype and other parameters for search
+
+				// Optional: Customize the search parameters
+				//vc.SetPlaceType(PlaceType.Address);
+				//vc.SetLocationBias(new LocationBias(40.7058316, -74.2581935, 1000000));
 
 				// Optional: Customize the view styling
 				//vc.NavigationController.NavigationBar.BarStyle = UIBarStyle.Default;
