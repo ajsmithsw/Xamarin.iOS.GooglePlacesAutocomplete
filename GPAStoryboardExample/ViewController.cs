@@ -31,6 +31,7 @@ namespace GPAStoryboardExample
 			{
 				var vc = (PlacesViewController)segue.DestinationViewController.ChildViewControllers[0];
 				vc.apiKey = "<Your API key here>";
+				// TODO - Set Placetype and other parameters for search
 
 				// Optional: Customize the view styling
 				//vc.NavigationController.NavigationBar.BarStyle = UIBarStyle.Default;

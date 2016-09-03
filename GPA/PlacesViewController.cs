@@ -11,7 +11,6 @@ using Newtonsoft.Json;
 
 namespace GPA
 {
-	// Event handler for sending LocationObject to parent view controller
 	public delegate void PlaceSelected(object sender, JObject locationData);
 
 	public enum PlaceType
