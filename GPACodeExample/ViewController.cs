@@ -26,18 +26,9 @@ namespace GPACodeExample
 			{
 				// 1. Instantiate the PlacesViewController
 				placesViewController = new PlacesViewController();
-				placesViewController.apiKey = Constants.apiKey; //"<Your API key here>";
+				placesViewController.apiKey = "<Your API key here>";
 
-				// 2. Set the search criteria to match your needs
-
-				//  Note: If you do not supply the location and radius, 
-				//	the API will attempt to detect the user's location 
-				//	from their IP address, and will bias the results to 
-				//	that location. If you would prefer to have no 
-				//  location bias, set the location to '0,0' and radius 
-				//  to '20000000' (20 thousand kilometers), to encompass 
-				//  the entire world.
-				
+				// 2. (OPTIONAL) Set the search criteria to match your needs
 				//placesViewController.SetPlaceType(PlaceType.Cities);
 				//placesViewController.SetLocationBias(new LocationBias(40.7058316, -74.2581935, 1000000));
 
