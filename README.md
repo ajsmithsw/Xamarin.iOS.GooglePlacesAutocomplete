@@ -104,6 +104,28 @@ void HandlePlaceSelection(object sender, JObject placeDetails)
 ```
 
 
+### Search Parameters
+
+##### Place Type
+
+from [Google](https://developers.google.com/places/web-service/autocomplete#place_types):
+>You may restrict results from a Place Autocomplete request to be of a certain type by passing a types parameter. 
+
+>The parameter specifies a type or a type collection. If nothing is specified, all types are returned.
+
+`PlaceType` enum values: 
+* .All 
+* .Geocode 
+* .Address 
+* .Establishment 
+* .Regions 
+* .Cities
+
+##### Location Biasing
+
+From [Google](https://developers.google.com/places/web-service/autocomplete#location_biasing):
+>If you do not supply the location and radius, the API will attempt to detect the user's location from their IP address, and will bias the results to that location. If you would prefer to have no location bias, set the location to '0,0' and radius to '20000000' (20 thousand kilometers), to encompass the entire world.
+
 ### Styling
 
 You can style the Places view controller to match your app's UI:
@@ -132,5 +154,19 @@ if (segue.Identifier.Equals("MyCustomSegue"))
     vc.Title = "Type Address";
     
     ...
+}
+```
+
+
+### Place Object
+
+You can utilize the GooglePlace object by importing 'DurianCode.iOS.Places.GooglePlace'. For example:
+
+```csharp
+void HandlePlaceSelection(object sender, JObject placeData)
+{ 
+    var place = new GooglePlace(placeData);
+    Console.WriteLine($"Place: {place.name}, Coordinates: {place.lat},{place.lon}");
+    Console.WriteLine(place.raw); // prints the full place details json result
 }
 ```

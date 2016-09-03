@@ -52,6 +52,7 @@
     <Compile Include="LocationPredictions.cs" />
     <Compile Include="Prediction.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="GooglePlace.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -2,6 +2,7 @@
 using DurianCode.iOS.Places;
 using UIKit;
 using Newtonsoft.Json.Linq;
+using DurianCode.iOS.Places.GooglePlace;
 
 namespace GPACodeExample
 {
@@ -81,7 +82,8 @@ namespace GPACodeExample
 			// 6. Handle the place details however you wish
 			Console.WriteLine($"{placeData}");
 
-			// TODO - Create helper class 'Place'
+			// You can utilize the GooglePlace object by importing 'DurianCode.iOS.Places.GooglePlace'
+			var place = new GooglePlace(placeData);
 		}
 
 	}
