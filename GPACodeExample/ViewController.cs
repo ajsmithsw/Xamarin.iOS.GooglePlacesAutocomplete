@@ -75,6 +75,8 @@ namespace GPACodeExample
 
 			// You can utilize the Place object by importing 'DurianCode.iOS.Places.GooglePlace'
 			var place = new Place(placeData);
+			Console.WriteLine($"Place: {place.name}, Coordinates: {place.latitude},{place.longitude}");
+			Console.WriteLine(place.raw); // prints the full place details json result
 		}
 
 	}

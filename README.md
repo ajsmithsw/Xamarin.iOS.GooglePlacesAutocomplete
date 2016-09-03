@@ -166,7 +166,7 @@ You can utilize the Place object by using 'DurianCode.iOS.Places.GooglePlace'. F
 void HandlePlaceSelection(object sender, JObject placeData)
 { 
     var place = new Place(placeData);
-    Console.WriteLine($"Place: {place.name}, Coordinates: {place.lat},{place.lon}");
+    Console.WriteLine($"Place: {place.name}, Coordinates: {place.latitude},{place.longitude}");
     Console.WriteLine(place.raw); // prints the full place details json result
 }
 ```
