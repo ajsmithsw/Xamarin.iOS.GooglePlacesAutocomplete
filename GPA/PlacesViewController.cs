@@ -53,7 +53,7 @@ namespace DurianCode.iOS.Places
 
 		public UIView backgroundView;
 		UISearchBar searchBar;
-		// TODO - UIImageView googleAttribution;
+		UIImageView googleAttribution;
 		UITableView resultsTable;
 		UITableViewSource tableSource;
 		public string apiKey { get; set; }
@@ -81,6 +81,12 @@ namespace DurianCode.iOS.Places
 			searchBar.BecomeFirstResponder();
 
 			// TODO - add 'powered by google' attribution image before resultsTable
+			googleAttribution = new UIImageView();
+			googleAttribution.Image = UIImage.FromBundle("powered_by_google_on_white");
+			googleAttribution.TranslatesAutoresizingMaskIntoConstraints = false;
+			googleAttribution.ContentMode = UIViewContentMode.ScaleAspectFit;
+			View.AddSubview(googleAttribution);
+			AddAttributionConstraints();
 
 			resultsTable = new UITableView();
 			tableSource = new ResultsTableSource();
@@ -111,6 +117,24 @@ namespace DurianCode.iOS.Places
 			NSLayoutConstraint.ActivateConstraints(new NSLayoutConstraint[]
 			{
 			sbLeft, sbRight, sbTop, sbHeight
+			});
+			UpdateViewConstraints();
+		}
+
+		void AddAttributionConstraints()
+		{
+			var gaTop = NSLayoutConstraint.Create(googleAttribution,
+												  NSLayoutAttribute.Top,
+												  NSLayoutRelation.Equal,
+												  searchBar,
+												  NSLayoutAttribute.Bottom,
+												  1, 30.0f);
+			var gaCenterX = googleAttribution.CenterXAnchor.ConstraintEqualTo(View.CenterXAnchor);
+			var gaWidth = googleAttribution.WidthAnchor.ConstraintEqualTo(100.0f);
+			var gaHeight = googleAttribution.HeightAnchor.ConstraintEqualTo(20.0f);
+			NSLayoutConstraint.ActivateConstraints(new NSLayoutConstraint[]
+			{
+				gaTop, gaCenterX, gaWidth, gaHeight
 			});
 			UpdateViewConstraints();
 		}
