@@ -13,6 +13,13 @@ Solution is currently incomplete. If you wish to contribute, you're very welcome
 Use the [Google Developers Console](https://console.developers.google.com/) to enable the 'Google Places API Web Service' and create a 'Server' API key credential. In both cases do not use the iOS options.
 
 
+### Installing
+NuGet package:
+```
+PM> Install-Package DurianCode.iOS.Places
+```
+
+
 
 ## How to implement PlacesViewController
 
