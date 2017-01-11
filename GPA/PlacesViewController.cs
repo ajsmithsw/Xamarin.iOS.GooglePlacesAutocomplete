@@ -110,46 +110,71 @@ namespace DurianCode.iOS.Places
 
 		void AddSearchBarConstraints()
 		{
-			var sbLeft = searchBar.LeftAnchor.ConstraintEqualTo(View.LeftAnchor);
-			var sbRight = searchBar.RightAnchor.ConstraintEqualTo(View.RightAnchor);
-			var sbTop = searchBar.TopAnchor.ConstraintEqualTo(View.TopAnchor);
-			var sbHeight = searchBar.HeightAnchor.ConstraintEqualTo(45.0f);
-			NSLayoutConstraint.ActivateConstraints(new NSLayoutConstraint[]
+			if (UIDevice.CurrentDevice.CheckSystemVersion(9, 0))
 			{
-			sbLeft, sbRight, sbTop, sbHeight
-			});
-			UpdateViewConstraints();
+				var sbLeft = searchBar.LeftAnchor.ConstraintEqualTo(View.LeftAnchor);
+				var sbRight = searchBar.RightAnchor.ConstraintEqualTo(View.RightAnchor);
+				var sbTop = searchBar.TopAnchor.ConstraintEqualTo(View.TopAnchor);
+				var sbHeight = searchBar.HeightAnchor.ConstraintEqualTo(45.0f);
+				NSLayoutConstraint.ActivateConstraints(new NSLayoutConstraint[]
+				{
+				sbLeft, sbRight, sbTop, sbHeight
+				});
+				UpdateViewConstraints();
+			}
+			else
+			{
+				searchBar.Frame = new CoreGraphics.CGRect(0, 0, View.Frame.Width, 45.0f);
+			}
 		}
 
 		void AddAttributionConstraints()
 		{
-			var gaTop = NSLayoutConstraint.Create(googleAttribution,
-												  NSLayoutAttribute.Top,
-												  NSLayoutRelation.Equal,
-												  searchBar,
-												  NSLayoutAttribute.Bottom,
-												  1, 30.0f);
-			var gaCenterX = googleAttribution.CenterXAnchor.ConstraintEqualTo(View.CenterXAnchor);
-			var gaWidth = googleAttribution.WidthAnchor.ConstraintEqualTo(100.0f);
-			var gaHeight = googleAttribution.HeightAnchor.ConstraintEqualTo(20.0f);
-			NSLayoutConstraint.ActivateConstraints(new NSLayoutConstraint[]
+			if (UIDevice.CurrentDevice.CheckSystemVersion(9, 0))
 			{
-				gaTop, gaCenterX, gaWidth, gaHeight
-			});
-			UpdateViewConstraints();
+				var gaTop = NSLayoutConstraint.Create(googleAttribution,
+													  NSLayoutAttribute.Top,
+													  NSLayoutRelation.Equal,
+													  searchBar,
+													  NSLayoutAttribute.Bottom,
+													  1, 30.0f);
+				var gaCenterX = googleAttribution.CenterXAnchor.ConstraintEqualTo(View.CenterXAnchor);
+				var gaWidth = googleAttribution.WidthAnchor.ConstraintEqualTo(100.0f);
+				var gaHeight = googleAttribution.HeightAnchor.ConstraintEqualTo(20.0f);
+				NSLayoutConstraint.ActivateConstraints(new NSLayoutConstraint[]
+				{
+					gaTop, gaCenterX, gaWidth, gaHeight
+				});
+				UpdateViewConstraints();
+			}
+			else
+			{
+				googleAttribution.Frame = new CoreGraphics.CGRect(
+					(View.Frame.Width / 2) - (100 / 2),
+					searchBar.Frame.Bottom + 30,
+					100,
+					20);
+			}
 		}
 
 		void AddResultsTableConstraints()
 		{
-			var rtLeft = resultsTable.LeftAnchor.ConstraintEqualTo(View.LeftAnchor);
-			var rtRight = resultsTable.RightAnchor.ConstraintEqualTo(View.RightAnchor);
-			var rtTop = resultsTable.TopAnchor.ConstraintEqualTo(searchBar.BottomAnchor);
-			var rtBottom = resultsTable.BottomAnchor.ConstraintEqualTo(View.BottomAnchor);
-			NSLayoutConstraint.ActivateConstraints(new NSLayoutConstraint[]
+			if (UIDevice.CurrentDevice.CheckSystemVersion(9, 0))
 			{
-			rtLeft, rtRight, rtTop, rtBottom
-			});
-			UpdateViewConstraints();
+				var rtLeft = resultsTable.LeftAnchor.ConstraintEqualTo(View.LeftAnchor);
+				var rtRight = resultsTable.RightAnchor.ConstraintEqualTo(View.RightAnchor);
+				var rtTop = resultsTable.TopAnchor.ConstraintEqualTo(searchBar.BottomAnchor);
+				var rtBottom = resultsTable.BottomAnchor.ConstraintEqualTo(View.BottomAnchor);
+				NSLayoutConstraint.ActivateConstraints(new NSLayoutConstraint[]
+				{
+				rtLeft, rtRight, rtTop, rtBottom
+				});
+				UpdateViewConstraints();
+			}
+			else
+			{
+				resultsTable.Frame = new CoreGraphics.CGRect(0, 45.0f, View.Frame.Width, View.Frame.Height - 45.0f);
+			}
 		}
 
 		public void SetLocationBias(LocationBias locationBias)
